@@ -1,0 +1,56 @@
+// import { useState } from 'react'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import Layout from "./layout/Layout";
+import Register from "./pages/Register";
+import SignIn from "./pages/SignIn";
+
+function App() {
+  // const [count, setCount] = useState(0)
+
+  return (
+    <>
+     <Router>
+      <Routes>
+        <Route
+         path="/" 
+         element={
+         <Layout
+          childern={<p>Home Page</p>}>
+         </Layout>
+        } 
+        />
+        <Route 
+        path="/search" 
+        element={
+          <Layout childern={<p>Search Page</p>}>
+          
+        </Layout>
+      }  
+      />
+      <Route path="/register" element={
+      <Layout childern={<Register/>}>  
+      </Layout>
+    }/>
+     <Route path="/sign-in" element={
+      <Layout childern={<SignIn/>}>  
+      </Layout>
+     }/>
+
+
+        <Route path="*" element={<Navigate to="/"/>} />
+
+      </Routes>
+     </Router>
+       
+    </>
+  );
+};
+
+export default App;
