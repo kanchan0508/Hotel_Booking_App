@@ -1,6 +1,4 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
+
 import {
   BrowserRouter as Router,
   Route,
@@ -10,10 +8,12 @@ import {
 import Layout from "./layout/Layout";
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
+import AddHotel from "./pages/AddHotel";
+import { useAppContext } from "./contexts/AppContext";
 
-function App() {
-  // const [count, setCount] = useState(0)
 
+const App= ()=> {
+const {isLoggedIn} = useAppContext();
   return (
     <>
      <Router>
@@ -43,7 +43,15 @@ function App() {
       </Layout>
      }/>
 
-
+     {isLoggedIn && (
+      <>
+      <Route path="/add-hotel"
+      element={
+        <Layout childern={<AddHotel/>}>
+        </Layout>
+      }/>
+      </>
+     )}
         <Route path="*" element={<Navigate to="/"/>} />
 
       </Routes>
