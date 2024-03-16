@@ -11,6 +11,7 @@ import AddHotel from "./pages/AddHotel";
 import { useAppContext } from "./contexts/AppContext";
 import MyHotels from "./pages/MyHotel";
 import EditHotel from "./pages/EditHotel";
+import Search from "./pages/Search";
 
 const App = () => {
   const { isLoggedIn } = useAppContext();
@@ -24,7 +25,7 @@ const App = () => {
           />
           <Route
             path="/search"
-            element={<Layout childern={<p>Search Page</p>}></Layout>}
+            element={<Layout childern={<Search/>}></Layout>}
           />
           <Route
             path="/register"
