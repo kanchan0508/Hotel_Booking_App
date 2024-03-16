@@ -8,7 +8,7 @@ import StarRatingFilter from "../components/StarRatingFilter";
 import HotelTypesFilter from "../components/HotelTypeFilter";
 import FacilitiesFilter from "../components/FacilitiesFilter";
 import PriceFilter from "../components/PriceFilter";
-import { ClassNames } from "@emotion/react";
+
 
 const Search = () => {
   const search = useSearchContext();
