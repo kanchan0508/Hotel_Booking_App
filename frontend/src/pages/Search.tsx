@@ -9,7 +9,6 @@ import HotelTypesFilter from "../components/HotelTypeFilter";
 import FacilitiesFilter from "../components/FacilitiesFilter";
 import PriceFilter from "../components/PriceFilter";
 
-
 const Search = () => {
   const search = useSearchContext();
   const [page, setPage] = useState<number>(1);
@@ -32,6 +31,7 @@ const Search = () => {
     maxPrice: selectedPrice?.toString(),
     sortOption,
   };
+
   const { data: hotelData } = useQuery(["searchHotels", searchParams], () =>
     apiClient.searchHotels(searchParams)
   );
@@ -45,6 +45,7 @@ const Search = () => {
         : prevStars.filter((star) => star !== starRating)
     );
   };
+
   const handleHotelTypeChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -57,9 +58,7 @@ const Search = () => {
     );
   };
 
-  const handleFacilitiesChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleFacilityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const facility = event.target.value;
 
     setSelectedFacilities((prevFacilities) =>
@@ -80,17 +79,14 @@ const Search = () => {
             selectedStars={selectedStars}
             onChange={handleStarsChange}
           />
-
           <HotelTypesFilter
             selectedHotelTypes={selectedHotelTypes}
             onChange={handleHotelTypeChange}
           />
-
           <FacilitiesFilter
             selectedFacilities={selectedFacilities}
-            onChange={handleFacilitiesChange}
+            onChange={handleFacilityChange}
           />
-
           <PriceFilter
             selectedPrice={selectedPrice}
             onChange={(value?: number) => setSelectedPrice(value)}
@@ -103,7 +99,6 @@ const Search = () => {
             {hotelData?.pagination.total} Hotels found
             {search.destination ? ` in ${search.destination}` : ""}
           </span>
-
           <select
             value={sortOption}
             onChange={(event) => setSortOption(event.target.value)}
@@ -133,4 +128,5 @@ const Search = () => {
     </div>
   );
 };
+
 export default Search;
