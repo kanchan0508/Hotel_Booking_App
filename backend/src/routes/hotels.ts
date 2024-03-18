@@ -1,10 +1,9 @@
 import express, { Request, Response } from "express";
 import Hotel from "../models/hotel";
-import { HotelSearchResponse } from "../shared/types";
+import { BookingType, HotelSearchResponse } from "../shared/types";
 import { param, validationResult } from "express-validator";
 import Stripe from "stripe";
 import verifyToken from "../middleware/auth";
-import { BookingType } from "../shared/types";
 
 const stripe = new Stripe(process.env.STRIPE_API_KEY as string);
 
@@ -55,15 +54,26 @@ router.get("/search", async (req: Request, res: Response) => {
     res.status(500).json({ message: "Something went wrong" });
   }
 });
-//api/hotels/3748geky6
+
+router.get("/", async (req: Request, res: Response) => {
+  try {
+    const hotels = await Hotel.find().sort("-lastUpdated");
+    res.json(hotels);
+  } catch (error) {
+    console.log("error", error);
+    res.status(500).json({ message: "Error fetching hotels" });
+  }
+});
+
 router.get(
   "/:id",
-  [param("id").notEmpty().withMessage("Hotel Id is required")],
+  [param("id").notEmpty().withMessage("Hotel ID is required")],
   async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+
     const id = req.params.id.toString();
 
     try {
@@ -80,7 +90,6 @@ router.post(
   "/:hotelId/bookings/payment-intent",
   verifyToken,
   async (req: Request, res: Response) => {
-    
     const { numberOfNights } = req.body;
     const hotelId = req.params.hotelId;
 
@@ -113,6 +122,7 @@ router.post(
     res.send(response);
   }
 );
+
 router.post(
   "/:hotelId/bookings",
   verifyToken,
