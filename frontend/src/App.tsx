@@ -13,6 +13,7 @@ import MyHotels from "./pages/MyHotel";
 import EditHotel from "./pages/EditHotel";
 import Search from "./pages/Search";
 import Detail from "./pages/Detail";
+import Booking from "./pages/Booking";
 
 const App = () => {
   const { isLoggedIn } = useAppContext();
@@ -43,6 +44,10 @@ const App = () => {
 
           {isLoggedIn && (
             <>
+             <Route
+                path="/hotel/:hotelId/booking"
+                element={<Layout childern={<Booking/>}></Layout>}
+              />
               <Route
                 path="/add-hotel"
                 element={<Layout childern={<AddHotel />}></Layout>}
