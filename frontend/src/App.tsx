@@ -14,6 +14,7 @@ import EditHotel from "./pages/EditHotel";
 import Search from "./pages/Search";
 import Detail from "./pages/Detail";
 import Booking from "./pages/Booking";
+import MyBookings from './pages/MyBookings';
 
 const App = () => {
   const { isLoggedIn } = useAppContext();
@@ -27,11 +28,11 @@ const App = () => {
           />
           <Route
             path="/search"
-            element={<Layout childern={<Search/>}></Layout>}
+            element={<Layout childern={<Search />}></Layout>}
           />
           <Route
             path="/detail/:hotelId"
-            element={<Layout childern={<Detail/>}></Layout>}
+            element={<Layout childern={<Detail />}></Layout>}
           />
           <Route
             path="/register"
@@ -44,9 +45,9 @@ const App = () => {
 
           {isLoggedIn && (
             <>
-             <Route
+              <Route
                 path="/hotel/:hotelId/booking"
-                element={<Layout childern={<Booking/>}></Layout>}
+                element={<Layout childern={<Booking />}></Layout>}
               />
               <Route
                 path="/add-hotel"
@@ -54,15 +55,16 @@ const App = () => {
               />
               <Route
                 path="/edit-hotel/:hotelId"
-                element={<Layout childern={<EditHotel />}></Layout>
-                }
+                element={<Layout childern={<EditHotel />}></Layout>}
               />
               <Route
                 path="/my-hotels"
-                element={<Layout childern={<MyHotels />}></Layout>
-                }
+                element={<Layout childern={<MyHotels />}></Layout>}
               />
-
+              <Route
+                path="/my-bookings"
+                element={<Layout childern={<MyBookings />}></Layout>}
+              />
             </>
           )}
 
