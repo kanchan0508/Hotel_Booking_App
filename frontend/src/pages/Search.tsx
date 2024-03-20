@@ -67,8 +67,7 @@ const Search = () => {
         : prevFacilities.filter((prevFacility) => prevFacility !== facility)
     );
   };
-
-  return (
+return (
     <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
       <div className="rounded-lg border border-slate-300 p-5 h-fit sticky top-10">
         <div className="space-y-5">
