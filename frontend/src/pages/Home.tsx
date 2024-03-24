@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import * as apiClient from "../api-client";
-import LatestDestinationCard from  "../components/LatestDestinationCard";
+import LatestDestinationCard from "../components/LatestDestinationCard";
 import { HotelType } from "../../../backend/src/shared/types";
 
 const Home = () => {
@@ -10,7 +10,6 @@ const Home = () => {
 
   const topRowHotels = Array.isArray(hotels) ? hotels.slice(0, 2) : [];
   const bottomRowHotels = Array.isArray(hotels) ? hotels.slice(2) : [];
-
 
   return (
     <div className="space-y-3">

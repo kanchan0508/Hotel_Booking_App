@@ -2,6 +2,8 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import SearchBar from "../components/SearchBar";
+import ChatBubble from "../components/chatbubble";
+
 
 interface Props {
   childern: React.ReactNode;
@@ -16,6 +18,7 @@ const Layout = ({ childern }: Props) => {
         <SearchBar />
       </div>
       <div className="container mx-auto py-10 flex-1"> {childern}</div>
+      <ChatBubble/>
       <Footer />
     </div>
   );
